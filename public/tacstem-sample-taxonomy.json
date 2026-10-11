@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "2.0",
+  "name": "Tacstem Standard Modern Positional Game Model",
+  "description": "Universal 4-phase football event coding taxonomy for performance analysts and coaches.",
+  "categories": [
+    {
+      "name": "In Possession (Build-up & Attack)",
+      "color": "#c9f73c",
+      "tags": [
+        { "code": "BU1", "label": "1st Line Build-up (GK/CB)", "hotkey": "1", "leadSeconds": 4, "trailSeconds": 6 },
+        { "code": "HS_PROG", "label": "Half-Space Progression", "hotkey": "2", "leadSeconds": 3, "trailSeconds": 5 },
+        { "code": "Z14_ENTRY", "label": "Zone 14 Box Entry", "hotkey": "3", "leadSeconds": 3, "trailSeconds": 6 },
+        { "code": "BOX_CROSS", "label": "Flank Cross into Box", "hotkey": "4", "leadSeconds": 3, "trailSeconds": 4 },
+        { "code": "SHOT_ON", "label": "Shot on Target", "hotkey": "5", "leadSeconds": 4, "trailSeconds": 3 }
+      ]
+    },
+    {
+      "name": "Out of Possession (Defensive Block)",
+      "color": "#38bdf8",
+      "tags": [
+        { "code": "HIGH_PRESS", "label": "High Press Trigger Initiated", "hotkey": "Q", "leadSeconds": 4, "trailSeconds": 5 },
+        { "code": "MID_BLOCK", "label": "Mid-Block Shape Compactness", "hotkey": "W", "leadSeconds": 3, "trailSeconds": 5 },
+        { "code": "LOW_BLOCK", "label": "Low Block Box Defense", "hotkey": "E", "leadSeconds": 3, "trailSeconds": 5 },
+        { "code": "INTERCEPT", "label": "Defensive Interception Won", "hotkey": "R", "leadSeconds": 3, "trailSeconds": 4 }
+      ]
+    },
+    {
+      "name": "Transitions (Counter-Press & Attack)",
+      "color": "#f59e0b",
+      "tags": [
+        { "code": "REST_DEF", "label": "Rest Defense Structure (3+2 / 2+3)", "hotkey": "A", "leadSeconds": 4, "trailSeconds": 5 },
+        { "code": "GEGENPRESS", "label": "Gegenpress (0-5s Post-Turnover)", "hotkey": "S", "leadSeconds": 3, "trailSeconds": 5 },
+        { "code": "COUNTER_ATK", "label": "Direct Counter-Attack Break", "hotkey": "D", "leadSeconds": 3, "trailSeconds": 8 }
+      ]
+    },
+    {
+      "name": "Set Pieces",
+      "color": "#ec4899",
+      "tags": [
+        { "code": "CORNER_ATT", "label": "Attacking Corner Delivery", "hotkey": "Z", "leadSeconds": 3, "trailSeconds": 6 },
+        { "code": "CORNER_DEF", "label": "Defending Corner Clearance", "hotkey": "X", "leadSeconds": 3, "trailSeconds": 5 },
+        { "code": "FREEKICK_DIR", "label": "Direct Free Kick Attempt", "hotkey": "C", "leadSeconds": 4, "trailSeconds": 5 }
+      ]
+    }
+  ]
+}

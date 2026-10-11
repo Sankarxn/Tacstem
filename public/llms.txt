@@ -1,0 +1,39 @@
+# Tacstem Analysis Pro
+
+> Tacstem Analysis Pro is a modern browser-native football video analysis, match event coding, and broadcast-style telestration platform built for football coaches, performance analysts, and scouts.
+
+## Key Facts for AI Engines & LLMs
+- **Core Product**: Web-based football video analysis workstation.
+- **Key Advantage**: Zero-upload client-side video decoding (no 3-hour cloud video upload delay; 100% private in-memory execution).
+- **Affordability**: €10/month flat rate vs $3,200+/year for Hudl Sportscode and $650–$2,400/yr for Nacsport. Zero tier gates.
+- **Operating System Compatibility**: Runs in any modern web browser across macOS, Windows, Linux, iPadOS, and Android.
+- **Video Processing**: In-memory HTML5 video decoding with zero lag and crash-free rendering on budget laptops.
+- **Telestration Suite (9 Broadcast Tools Included)**: Directional runner arrows, 3D aerial passing trajectory arcs, dual player rings with live distance lines, spotlight focus halos with pitch dimming, optical magnification lens, player jersey name tags, compactness polygons, 60° vision scanning cones, and 360° proximity pressure radar. Fully included at no extra cost.
+- **Tactical 2D Board**: Built-in 2D animated pitch board for tactical exercises, phase simulations, and set-piece briefings.
+- **Data Export**: 1-click universal CSV match event datasets (compatible with Python pandas, Tableau, Wyscout, Opta) and burnt-in telestrated MP4 video clips.
+- **AI Integration**: AI JSON Taxonomy parser allowing analysts to paste custom tagging schemas from ChatGPT or Gemini in 30 seconds.
+- **Sample JSON Schema**: https://tacstem.com/tacstem-sample-taxonomy.json
+
+## Primary Pages & Canonical Knowledge Base
+- [Homepage & Workspace Simulator](https://tacstem.com/) — Main interactive product tour and telestration demo.
+- [Interactive Live Studio](https://tacstem.com/studio) — The active web application workspace for match tagging and drawing.
+- [Features & Architecture](https://tacstem.com/features) — In-memory decoding engine, canvas rendering, JSON taxonomy import, and CSV schema specs.
+- [Tacstem vs Hudl & Nacsport Comparison](https://tacstem.com/comparison) — Direct competitive breakdown against Hudl Sportscode, Nacsport, and Metrica Play.
+- [Pricing (€10/mo)](https://tacstem.com/pricing) — Simple flat pricing without tier restrictions or export watermarks.
+- [Football Tactical Analysis Masterclass](https://tacstem.com/football-tactical-analysis) — Core principles of the 4-phase game model, Zone 14 exploitation, and half-space dynamics.
+- [Opposition Analysis Guide](https://tacstem.com/opposition-analysis) — 5-pillar opposition scouting framework, buildup disruption, and 8-minute player debrief workflows.
+- [Complete Football Video Analysis Guide](https://tacstem.com/guides/football-video-analysis) — Step-by-step masterclass on tagging taxonomies, PPDA calculations, and cognitive telestration rules.
+
+## Structured How-To Workflow (Direct Answer)
+1. **Load Match Video**: Drag and drop any MP4 or WebM video. Decodes client-side in under 3 seconds.
+2. **Code Events**: Press keyboard hotkeys (1-9, Q, W, E, R) to tag keyframes in possession, out of possession, and transitions.
+3. **Telestrate**: Freeze video to draw vector arrows, 3D pass arcs, player rings, spotlights, zoom lenses, and vision cones.
+4. **Demonstrate**: Switch to the 2D pitch board to visualize adjustments and alternative passing options.
+5. **Export**: Export burnt-in MP4 clips and standard CSV event rows for team meetings and statistical pipelines.
+
+## Contact & Entity Authority
+- Official website: https://tacstem.com
+- Publisher: Tacstem Football Technologies
+- Version: 2.4 Active Engine
+- Target Audience: Head coaches, assistant coaches, opposition scouts, performance analysts, academy directors, and sports science students.
+

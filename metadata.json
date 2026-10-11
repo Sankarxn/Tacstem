@@ -1,0 +1,8 @@
+{
+  "name": "Remix 2 Tacstem Analysis Pro - Football Video Analysis \u0026 Telestration Platform",
+  "description": "Professional football video analysis, match event coding, and broadcast-style telestration platform built for coaches, performance analysts, and scouts. High AEO \u0026 SEO discoverable Next.js app.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
