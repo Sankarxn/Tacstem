@@ -36,9 +36,6 @@ export function Hero() {
               </span>
               LOCAL-FIRST FOOTBALL ANALYSIS · ZERO CLOUD UPLOADS
             </p>
-            <span className="hidden font-mono text-[11px] text-muted-foreground sm:inline-block">
-              60 FPS GPU Decoding · 100% Private
-            </span>
           </div>
         </Reveal>
 

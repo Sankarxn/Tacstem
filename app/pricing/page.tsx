@@ -232,14 +232,6 @@ export default function PricingPage() {
                     <ArrowRight className="size-4" />
                   </Link>
                 </Button>
-                <Button
-                  asChild
-                  variant="outline"
-                  size="lg"
-                  className="w-full sm:w-auto h-12 justify-center border-white/15 bg-transparent px-6 text-xs font-mono text-foreground hover:border-primary/40 hover:bg-primary/5 cursor-pointer"
-                >
-                  <Link href="/studio">Test Free in Studio →</Link>
-                </Button>
               </div>
 
               <p className="mt-6 text-center font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
@@ -444,9 +436,6 @@ export default function PricingPage() {
                   <span>Start Analyzing for $10/mo</span>
                   <ArrowRight className="size-4" />
                 </Link>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="h-12 w-full sm:w-auto justify-center border-white/15 bg-transparent px-7 text-sm font-medium text-foreground hover:border-primary/40 hover:bg-primary/5 cursor-pointer">
-                <Link href="/studio">Test Free in Studio First</Link>
               </Button>
             </div>
 

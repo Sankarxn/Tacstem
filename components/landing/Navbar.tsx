@@ -107,13 +107,6 @@ export function Navbar() {
       {open && (
         <div className="border-b border-white/10 bg-[#0a0b0a] px-5 py-6 md:hidden">
           <div className="flex flex-col gap-2">
-            <Link
-              href="/"
-              onClick={() => setOpen(false)}
-              className="rounded-md px-3 py-2 font-mono text-xs uppercase tracking-wider text-muted-foreground hover:bg-white/5 hover:text-foreground"
-            >
-              Overview
-            </Link>
             {NAV_LINKS.map(({ label, href }) => (
               <Link
                 key={label}

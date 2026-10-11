@@ -213,15 +213,6 @@ export default function FeaturesPage() {
                     </div>
                   </div>
                 </div>
-
-                <div className="pt-2">
-                  <Button asChild size="sm" className="gap-2 font-mono text-xs shadow-sm">
-                    <Link href="/studio">
-                      <span>Test Video Playback in Studio</span>
-                      <ArrowRight className="size-3.5" />
-                    </Link>
-                  </Button>
-                </div>
               </div>
 
               {/* Visual Card */}
@@ -336,15 +327,6 @@ export default function FeaturesPage() {
                     </div>
                   </div>
                 </div>
-
-                <div className="pt-2">
-                  <Button asChild size="sm" className="gap-2 font-mono text-xs shadow-sm">
-                    <Link href="/studio">
-                      <span>Try Telestration Tools Now</span>
-                      <ArrowRight className="size-3.5" />
-                    </Link>
-                  </Button>
-                </div>
               </div>
             </article>
 
@@ -384,15 +366,6 @@ export default function FeaturesPage() {
                       <p className="text-xs text-muted-foreground">Tag live matches from the bench or stands without video loaded; sync footage in one click post-match.</p>
                     </div>
                   </div>
-                </div>
-
-                <div className="pt-2">
-                  <Button asChild size="sm" className="gap-2 font-mono text-xs shadow-sm">
-                    <Link href="/studio">
-                      <span>Open Event Coding Pad</span>
-                      <ArrowRight className="size-3.5" />
-                    </Link>
-                  </Button>
                 </div>
               </div>
 
@@ -478,15 +451,6 @@ export default function FeaturesPage() {
                       <p className="text-xs text-muted-foreground">Clean, professional exports with zero branding watermarks on both free and pro workflows.</p>
                     </div>
                   </div>
-                </div>
-
-                <div className="pt-2">
-                  <Button asChild size="sm" className="gap-2 font-mono text-xs shadow-sm">
-                    <Link href="/studio">
-                      <span>Test Export Engine</span>
-                      <ArrowRight className="size-3.5" />
-                    </Link>
-                  </Button>
                 </div>
               </div>
 

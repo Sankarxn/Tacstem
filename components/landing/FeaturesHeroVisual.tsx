@@ -1,11 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
 import {
   Activity,
-  ArrowRight,
-  CircleDot,
   Compass,
   Cpu,
   Eye,
@@ -13,7 +10,6 @@ import {
   Layers,
   Maximize2,
   MoveUpRight,
-  Orbit,
   Play,
   RotateCcw,
   Sparkles,
@@ -22,48 +18,8 @@ import {
 
 type ActiveMode = "telestration" | "tagging" | "engine";
 
-interface ToolItem {
-  id: string;
-  name: string;
-  icon: typeof MoveUpRight;
-  badge: string;
-  tagline: string;
-}
-
-const TOOLS: ToolItem[] = [
-  {
-    id: "spotlight",
-    name: "Spotlight Halo",
-    icon: CircleDot,
-    badge: "Focus",
-    tagline: "Pinpoint pivotal ball carrier & shadow cover",
-  },
-  {
-    id: "run-vector",
-    name: "Run Vector",
-    icon: MoveUpRight,
-    badge: "Motion",
-    tagline: "Dynamic curve arrow for half-space underlap",
-  },
-  {
-    id: "compact-chain",
-    name: "Chain Link",
-    icon: Hexagon,
-    badge: "Unit",
-    tagline: "Back-4 defensive line sync & spacing distance",
-  },
-  {
-    id: "aerial-arc",
-    name: "3D Aerial Arc",
-    icon: Orbit,
-    badge: "Flight",
-    tagline: "Parabolic trajectory calculation with drop zone",
-  },
-];
-
 export function FeaturesHeroVisual() {
   const [activeMode, setActiveMode] = useState<ActiveMode>("telestration");
-  const [selectedTool, setSelectedTool] = useState<string>("spotlight");
   const [isLivePlaying, setIsLivePlaying] = useState<boolean>(true);
 
   return (
@@ -344,64 +300,6 @@ export function FeaturesHeroVisual() {
                 <span className="text-white/70">MP4 1080p @ 60fps</span>
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* Bottom Feature Tool Belt (Interactive selector showcasing 4 primary tools) */}
-        <div className="border-t border-white/10 bg-[#0c0e0c] p-3 sm:p-4">
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-            {TOOLS.map((tool) => {
-              const Icon = tool.icon;
-              const isSelected = selectedTool === tool.id;
-
-              return (
-                <button
-                  key={tool.id}
-                  type="button"
-                  onClick={() => setSelectedTool(tool.id)}
-                  className={`flex flex-col text-left p-2.5 rounded-xl border transition-all cursor-pointer ${
-                    isSelected
-                      ? "border-primary/40 bg-primary/[0.08] shadow-[0_0_20px_-8px_rgba(201,247,60,0.25)]"
-                      : "border-white/5 bg-white/[0.01] hover:border-white/15 hover:bg-white/[0.03]"
-                  }`}
-                >
-                  <div className="flex items-center justify-between mb-1">
-                    <span
-                      className={`p-1 rounded-md ${
-                        isSelected ? "bg-primary text-black" : "bg-white/5 text-muted-foreground"
-                      }`}
-                    >
-                      <Icon className="size-3.5" />
-                    </span>
-                    <span className="font-mono text-[9px] uppercase tracking-wider text-primary font-medium">
-                      {tool.badge}
-                    </span>
-                  </div>
-                  <span className="text-xs font-semibold text-foreground truncate">
-                    {tool.name}
-                  </span>
-                  <span className="text-[10px] text-muted-foreground line-clamp-1 mt-0.5">
-                    {tool.tagline}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Quick Action Footer inside widget */}
-          <div className="mt-3 pt-3 border-t border-white/5 flex items-center justify-between font-mono text-[11px]">
-            <span className="text-muted-foreground flex items-center gap-1.5">
-              <span className="size-1.5 rounded-full bg-primary" />
-              Runs client-side in Google Chrome, Safari, Edge
-            </span>
-
-            <Link
-              href="/studio"
-              className="text-primary hover:underline flex items-center gap-1 font-semibold group"
-            >
-              <span>Test Live in Studio</span>
-              <ArrowRight className="size-3 transition-transform group-hover:translate-x-0.5" />
-            </Link>
           </div>
         </div>
       </div>

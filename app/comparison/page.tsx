@@ -171,9 +171,6 @@ export default function ComparisonPage() {
                       <ArrowRight className="size-4" />
                     </Link>
                   </Button>
-                  <Button asChild variant="outline" size="lg" className="h-12 border-white/15 bg-transparent px-6 text-sm text-foreground hover:border-primary/40 hover:bg-primary/5 cursor-pointer">
-                    <a href="#comparison-matrix">View Detailed Comparison Matrix ↓</a>
-                  </Button>
                 </div>
               </div>
 
@@ -341,21 +338,6 @@ export default function ComparisonPage() {
                       </div>
                     </div>
                   </div>
-
-                  {pillar.highlight ? (
-                    <div className="mt-8 pt-5 border-t border-primary/20">
-                      <Button asChild size="sm" className="w-full gap-2 shadow-sm font-semibold">
-                        <Link href="/studio">
-                          <span>Test Tacstem Free</span>
-                          <ArrowRight className="size-3.5" />
-                        </Link>
-                      </Button>
-                    </div>
-                  ) : (
-                    <div className="mt-8 pt-5 border-t border-white/5">
-                      <p className="font-mono text-[10px] text-muted-foreground text-center">Standard Industry Workflow</p>
-                    </div>
-                  )}
                 </div>
               ))}
             </div>
@@ -431,15 +413,6 @@ export default function ComparisonPage() {
 
                     <h3 className="mt-5 text-sm font-semibold text-foreground">The Tacstem Solution:</h3>
                     <p className="mt-1 text-xs text-muted-foreground leading-relaxed">{scenario.resolution}</p>
-                  </div>
-
-                  <div className="mt-6 border-t border-white/10 pt-4">
-                    <Link
-                      href="/studio"
-                      className="inline-flex items-center gap-1 font-mono text-[11px] text-primary hover:underline"
-                    >
-                      <span>Test in Studio →</span>
-                    </Link>
                   </div>
                 </div>
               ))}

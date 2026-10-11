@@ -1,5 +1,4 @@
-import Link from "next/link";
-import { ArrowRight, Trophy, BarChart3, Video } from "lucide-react";
+import { Trophy, BarChart3, Video } from "lucide-react";
 import {
   Container,
   Eyebrow,
@@ -83,13 +82,6 @@ export function Audience() {
                 <span className="font-mono text-[11px] text-primary/90 font-medium">
                   {person.action}
                 </span>
-                <Link
-                  href="/studio"
-                  className="inline-flex items-center gap-1 font-mono text-[11px] text-muted-foreground transition-colors hover:text-primary"
-                >
-                  <span>Try Studio</span>
-                  <ArrowRight className="size-3" />
-                </Link>
               </div>
             </Reveal>
           ))}
