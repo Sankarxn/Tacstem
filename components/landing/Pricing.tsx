@@ -103,8 +103,8 @@ export function Pricing() {
                 size="lg"
                 className="group h-12 w-full gap-2 text-base font-semibold shadow-[0_0_30px_-6px_rgba(201,247,60,0.7)] hover:shadow-[0_0_40px_-4px_rgba(201,247,60,0.9)] cursor-pointer"
               >
-                <Link href="/studio">
-                  <span>{PLAN.cta}</span>
+                <Link href="https://tacstempro.netlify.app/">
+                  <span>Launch Tacstem – Instant Access</span>
                   <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
               </Button>

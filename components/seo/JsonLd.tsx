@@ -14,9 +14,10 @@ interface JsonLdProps {
     description: string;
     steps: Array<{ name: string; text: string; url?: string }>;
   };
+  includeGlobal?: boolean;
 }
 
-export function JsonLd({ breadcrumbs, article, howTo }: JsonLdProps = {}) {
+export function JsonLd({ breadcrumbs, article, howTo, includeGlobal = false }: JsonLdProps = {}) {
   const baseUrl = process.env.APP_URL || "https://tacstem.com";
 
   // 1. Organization Schema
@@ -291,32 +292,44 @@ export function JsonLd({ breadcrumbs, article, howTo }: JsonLdProps = {}) {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(videoObjectSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(customHowToSchema || defaultHowToSchema),
-        }}
-      />
+      {includeGlobal && (
+        <>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+          />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteSchema) }}
+          />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppSchema) }}
+          />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(videoObjectSchema) }}
+          />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+          />
+          {!customHowToSchema && (
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(defaultHowToSchema) }}
+            />
+          )}
+        </>
+      )}
+      {customHowToSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(customHowToSchema),
+          }}
+        />
+      )}
       {breadcrumbSchema && (
         <script
           type="application/ld+json"

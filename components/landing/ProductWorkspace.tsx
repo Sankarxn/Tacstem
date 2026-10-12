@@ -183,8 +183,8 @@ export function ProductWorkspace() {
   const [speed, setSpeed] = useState<string>("1.0x");
   const [volume, setVolume] = useState<number>(65);
 
-  // Mobile drawer view state
-  const [mobileActivePanel, setMobileActivePanel] = useState<"playerTag" | "events">("playerTag");
+  // Mobile drawer view state: "playerTag" | "events" | "tools"
+  const [mobileActivePanel, setMobileActivePanel] = useState<"playerTag" | "events" | "tools">("playerTag");
 
   // Right Sidebar State
   const [activeTab, setActiveTab] = useState<"TAGS" | "EVENTS" | "NOTES" | "PLAYLIST">("TAGS");
@@ -439,24 +439,24 @@ export function ProductWorkspace() {
         </div>
 
         {/* Center Actions: Undo, Redo, Eraser, Trash */}
-        <div className="hidden md:flex items-center gap-3 text-gray-400">
+        <div className="flex items-center gap-1.5 sm:gap-2.5 text-gray-400">
           <button
             type="button"
             aria-label="Undo"
             onClick={() => showToast("Undo action")}
-            className="hover:text-white transition-colors cursor-pointer p-1"
+            className="hover:text-white transition-colors cursor-pointer p-1 touch-manipulation"
             title="Undo"
           >
-            <Undo2 className="size-4" />
+            <Undo2 className="size-3.5 sm:size-4" />
           </button>
           <button
             type="button"
             aria-label="Redo"
             onClick={() => showToast("Redo action")}
-            className="hover:text-white transition-colors cursor-pointer p-1"
+            className="hover:text-white transition-colors cursor-pointer p-1 touch-manipulation"
             title="Redo"
           >
-            <Redo2 className="size-4" />
+            <Redo2 className="size-3.5 sm:size-4" />
           </button>
           <button
             type="button"
@@ -467,12 +467,12 @@ export function ProductWorkspace() {
               showToast(next === "erase" ? "Erase Tool Active: Click any player tag on screen to erase it" : "Player Tag Tool Active");
             }}
             className={cn(
-              "transition-all cursor-pointer p-1 rounded",
+              "transition-all cursor-pointer p-1 rounded touch-manipulation",
               activeTool === "erase" ? "text-[#c6ff1f] bg-[#c6ff1f]/20 ring-1 ring-[#c6ff1f]" : "hover:text-white text-gray-400"
             )}
             title={activeTool === "erase" ? "Erase Tool (Active - click any tag on screen to erase)" : "Select Erase Tool"}
           >
-            <Eraser className="size-4" />
+            <Eraser className="size-3.5 sm:size-4" />
           </button>
           <button
             type="button"
@@ -547,36 +547,101 @@ export function ProductWorkspace() {
       </header>
 
       {/* Mobile Selector Bar for Panels (< lg screens) */}
-      <div className="flex lg:hidden items-center justify-between border-b border-[#20232c] bg-[#11131b] px-3 py-1.5 text-xs">
-        <div className="flex items-center gap-1">
+      <div className="flex lg:hidden items-center justify-between border-b border-[#20232c] bg-[#11131b] px-2.5 py-1.5 text-xs overflow-x-auto custom-scrollbar">
+        <div className="flex items-center gap-1 shrink-0">
           <button
             type="button"
             onClick={() => setMobileActivePanel("playerTag")}
             className={cn(
-              "px-2.5 py-1 rounded text-[10px] font-bold font-mono uppercase tracking-wider transition-colors cursor-pointer",
-              mobileActivePanel === "playerTag" ? "bg-[#c6ff1f] text-black" : "text-gray-400 hover:text-white"
+              "px-2.5 py-1 rounded text-[10px] font-bold font-mono uppercase tracking-wider transition-colors cursor-pointer touch-manipulation",
+              mobileActivePanel === "playerTag" ? "bg-[#c6ff1f] text-black shadow-sm" : "text-gray-400 hover:text-white bg-[#161822]"
             )}
           >
-            Player Tag Tool
+            Roster ({activeTeam})
           </button>
           <button
             type="button"
             onClick={() => setMobileActivePanel("events")}
             className={cn(
-              "px-2.5 py-1 rounded text-[10px] font-bold font-mono uppercase tracking-wider transition-colors cursor-pointer",
-              mobileActivePanel === "events" ? "bg-[#c6ff1f] text-black" : "text-gray-400 hover:text-white"
+              "px-2.5 py-1 rounded text-[10px] font-bold font-mono uppercase tracking-wider transition-colors cursor-pointer touch-manipulation",
+              mobileActivePanel === "events" ? "bg-[#c6ff1f] text-black shadow-sm" : "text-gray-400 hover:text-white bg-[#161822]"
             )}
           >
             Event Pad ({loggedEvents.length + stampedTags.length})
           </button>
+          <button
+            type="button"
+            onClick={() => setMobileActivePanel("tools")}
+            className={cn(
+              "px-2.5 py-1 rounded text-[10px] font-bold font-mono uppercase tracking-wider transition-colors cursor-pointer touch-manipulation",
+              mobileActivePanel === "tools" ? "bg-[#c6ff1f] text-black shadow-sm" : "text-gray-400 hover:text-white bg-[#161822]"
+            )}
+          >
+            Draw Tools
+          </button>
         </div>
 
-        <span className="text-[9px] font-mono text-[#c6ff1f]">Tap pitch to stamp</span>
+        <span className="text-[8.5px] font-mono text-[#c6ff1f] whitespace-nowrap pl-2 hidden xs:inline">
+          Tap pitch to stamp
+        </span>
       </div>
+
+      {/* Mobile Horizontal Tool Rail (visible on mobile when "tools" panel is selected) */}
+      {mobileActivePanel === "tools" && (
+        <div className="flex lg:hidden items-center gap-1.5 border-b border-[#20232c] bg-[#0c0d12] px-2.5 py-2 overflow-x-auto custom-scrollbar shrink-0">
+          {[
+            { id: "select", Icon: MousePointer2, label: "Select (V)" },
+            { id: "pen", Icon: PenLine, label: "Draw (D)" },
+            { id: "arrow", Icon: MoveUpRight, label: "Arrow (A)" },
+            { id: "curved-arrow", Icon: CornerUpRight, label: "Curved Arrow" },
+            { id: "circle", Icon: Circle, label: "Ring (C)" },
+            { id: "line", Icon: Minus, label: "Measure (L)" },
+            { id: "spotlight", Icon: Flashlight, label: "Spotlight" },
+            { id: "zoom", Icon: Search, label: "Zoom Lens" },
+            { id: "user", Icon: User, label: "Player Token" },
+            { id: "tag", Icon: Tag, label: "Player Tag" },
+            { id: "erase", Icon: Eraser, label: "Erase (E)" },
+            { id: "text", Icon: Type, label: "Text (T)" },
+            { id: "polygon", Icon: Hexagon, label: "Polygon" },
+            { id: "scanner", Icon: Crosshair, label: "Scanner" },
+          ].map(({ id, Icon, label }) => {
+            const isSelectedTool = activeTool === id;
+            return (
+              <button
+                key={`mobile-${id}`}
+                type="button"
+                aria-label={label}
+                title={label}
+                onClick={() => {
+                  if (id === "tag") {
+                    setActiveTool("tag");
+                    showToast("Player Tag Tool Active: Tap pitch to stamp");
+                  } else if (id === "erase") {
+                    const next = activeTool === "erase" ? "tag" : "erase";
+                    setActiveTool(next);
+                    showToast(next === "erase" ? "Erase Tool Active: Tap any tag on pitch to erase" : "Player Tag Tool Active");
+                  } else {
+                    showToast(`${label} selected`);
+                  }
+                }}
+                className={cn(
+                  "flex items-center gap-1 px-2.5 py-1.5 rounded text-[10px] font-mono shrink-0 transition-all cursor-pointer touch-manipulation",
+                  isSelectedTool
+                    ? "border border-[#c6ff1f] bg-[#c6ff1f]/20 text-[#c6ff1f] font-bold shadow-[0_0_8px_rgba(198,255,31,0.3)]"
+                    : "border border-[#232734] bg-[#141620] text-gray-300 hover:text-white"
+                )}
+              >
+                <Icon className="size-3.5" />
+                <span>{label.split(" ")[0]}</span>
+              </button>
+            );
+          })}
+        </div>
+      )}
 
       {/* ==================== 2. MAIN WORKSPACE BODY ==================== */}
       <div className="flex flex-col lg:flex-row overflow-hidden">
-        {/* ----- 2A. LEFT VERTICAL TOOL RAIL ----- */}
+        {/* ----- 2A. LEFT VERTICAL TOOL RAIL (DESKTOP) ----- */}
         <nav
           aria-label="Telestration Drawing Toolbar"
           className="hidden lg:flex w-10 shrink-0 flex-col items-center gap-1 border-r border-[#20232c] bg-[#0c0d12] py-2"
@@ -969,13 +1034,49 @@ export function ProductWorkspace() {
                     window.addEventListener("mousemove", handleMouseMove);
                     window.addEventListener("mouseup", handleMouseUp);
                   }}
+                  onTouchStart={(e) => {
+                    if (activeTool === "erase") {
+                      setStampedTags((prev) => prev.filter((t) => t.id !== tag.id));
+                      showToast(`Erased tag #${tag.playerNumber} ${tag.playerName}`);
+                      return;
+                    }
+                    e.stopPropagation();
+                    setSelectedTagId(tag.id);
+                    setDraggingTagId(tag.id);
+                  }}
+                  onTouchMove={(e) => {
+                    if (activeTool === "erase") return;
+                    if (!pitchContainerRef.current || !e.touches[0]) return;
+                    e.stopPropagation();
+
+                    const touch = e.touches[0];
+                    const rect = pitchContainerRef.current.getBoundingClientRect();
+                    const newX = Math.max(2, Math.min(98, ((touch.clientX - rect.left) / rect.width) * 100));
+                    const newY = Math.max(5, Math.min(95, ((touch.clientY - rect.top) / rect.height) * 100));
+
+                    setStampedTags((prev) =>
+                      prev.map((t) =>
+                        t.id === tag.id
+                          ? {
+                              ...t,
+                              xPercent: newX,
+                              yPercent: newY,
+                            }
+                          : t
+                      )
+                    );
+                  }}
+                  onTouchEnd={(e) => {
+                    e.stopPropagation();
+                    setDraggingTagId(null);
+                  }}
                   style={{
                     left: `${tag.xPercent}%`,
                     top: `${tag.yPercent}%`,
                     transform: "translate(-50%, -100%)",
                   }}
                   className={cn(
-                    "absolute flex flex-col items-center cursor-move transition-transform duration-75 group/tag",
+                    "absolute flex flex-col items-center cursor-move transition-transform duration-75 group/tag touch-none",
                     isTagSelected && "ring-1 ring-white/50 rounded"
                   )}
                 >
@@ -1332,10 +1433,22 @@ export function ProductWorkspace() {
       <footer aria-label="Timeline Scrubber and Export Actions" className="flex flex-col border-t border-[#20232c] bg-[#0c0e14]">
         {/* Scrubber Progress Bar & Dots */}
         <div
-          className="relative h-4 px-3 flex items-center cursor-pointer bg-[#08090d]"
+          className="relative h-5 px-3 flex items-center cursor-pointer bg-[#08090d] touch-none"
           onClick={(e) => {
             const rect = e.currentTarget.getBoundingClientRect();
             const pos = Math.max(0, Math.min(100, ((e.clientX - rect.left) / rect.width) * 100));
+            setCurrentSeconds((pos / 100) * totalDuration);
+          }}
+          onTouchStart={(e) => {
+            if (!e.touches[0]) return;
+            const rect = e.currentTarget.getBoundingClientRect();
+            const pos = Math.max(0, Math.min(100, ((e.touches[0].clientX - rect.left) / rect.width) * 100));
+            setCurrentSeconds((pos / 100) * totalDuration);
+          }}
+          onTouchMove={(e) => {
+            if (!e.touches[0]) return;
+            const rect = e.currentTarget.getBoundingClientRect();
+            const pos = Math.max(0, Math.min(100, ((e.touches[0].clientX - rect.left) / rect.width) * 100));
             setCurrentSeconds((pos / 100) * totalDuration);
           }}
         >
@@ -1353,32 +1466,32 @@ export function ProductWorkspace() {
 
           {/* Scrubber handle */}
           <div
-            className="absolute top-1/2 -translate-y-1/2 size-2.5 rounded-full bg-white shadow-[0_0_8px_white] pointer-events-none"
+            className="absolute top-1/2 -translate-y-1/2 size-3 rounded-full bg-white shadow-[0_0_8px_white] pointer-events-none"
             style={{ left: `calc(${progressPercent}% + 4px)` }}
           />
         </div>
 
         {/* Transport Controls and Below-Timeline Export CSV Row */}
-        <div className="flex flex-wrap sm:flex-nowrap items-center justify-between px-3 py-1.5 text-xs text-gray-300 border-t border-[#1a1c24] gap-2">
+        <div className="flex items-center justify-between px-2 sm:px-3 py-1.5 text-xs text-gray-300 border-t border-[#1a1c24] gap-1.5 sm:gap-2">
           {/* Left: Play / Skip / Timecode */}
-          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+          <div className="flex items-center gap-1 sm:gap-2.5 shrink-0">
             <button
               type="button"
               aria-label="First Frame"
               onClick={() => setCurrentSeconds(0)}
-              className="hover:text-white p-1 cursor-pointer"
+              className="hover:text-white p-1 cursor-pointer hidden xxs:block touch-manipulation"
               title="First Frame"
             >
-              <SkipBack className="size-3.5" />
+              <SkipBack className="size-3 sm:size-3.5" />
             </button>
             <button
               type="button"
               aria-label="Jump Back 5s"
               onClick={() => setCurrentSeconds((p) => Math.max(0, p - 5))}
-              className="hover:text-white p-1 cursor-pointer"
+              className="hover:text-white p-1 cursor-pointer touch-manipulation"
               title="Jump Back 5s"
             >
-              <RotateCcw className="size-3.5" />
+              <RotateCcw className="size-3 sm:size-3.5" />
             </button>
 
             {/* Big circular play button */}
@@ -1386,35 +1499,35 @@ export function ProductWorkspace() {
               type="button"
               aria-label={isPlaying ? "Pause Video" : "Play Video"}
               onClick={() => setIsPlaying(!isPlaying)}
-              className="grid size-7 place-items-center rounded-full bg-white text-black transition-transform active:scale-95 cursor-pointer shadow-md"
+              className="grid size-7 sm:size-8 place-items-center rounded-full bg-white text-black transition-transform active:scale-95 cursor-pointer shadow-md touch-manipulation shrink-0"
               title={isPlaying ? "Pause" : "Play"}
             >
-              {isPlaying ? <Pause className="size-3.5" /> : <Play className="size-3.5 translate-x-0.5" />}
+              {isPlaying ? <Pause className="size-3.5 sm:size-4" /> : <Play className="size-3.5 sm:size-4 translate-x-0.5" />}
             </button>
 
             <button
               type="button"
               aria-label="Jump Forward 5s"
               onClick={() => setCurrentSeconds((p) => Math.min(totalDuration, p + 5))}
-              className="hover:text-white p-1 cursor-pointer"
+              className="hover:text-white p-1 cursor-pointer touch-manipulation"
               title="Jump Forward 5s"
             >
-              <RotateCw className="size-3.5" />
+              <RotateCw className="size-3 sm:size-3.5" />
             </button>
             <button
               type="button"
               aria-label="Last Frame"
               onClick={() => setCurrentSeconds(totalDuration)}
-              className="hover:text-white p-1 cursor-pointer"
+              className="hover:text-white p-1 cursor-pointer hidden xxs:block touch-manipulation"
               title="Last Frame"
             >
-              <SkipForward className="size-3.5" />
+              <SkipForward className="size-3 sm:size-3.5" />
             </button>
 
             {/* Timecode */}
-            <span className="font-mono text-[10.5px] tabular-nums font-semibold text-gray-200">
+            <span className="font-mono text-[9.5px] sm:text-[10.5px] tabular-nums font-semibold text-gray-200 pl-0.5">
               {formatTime(currentSeconds)}{" "}
-              <span className="text-gray-500 font-normal">/ {formatTime(totalDuration)}</span>
+              <span className="text-gray-500 font-normal hidden xs:inline">/ {formatTime(totalDuration)}</span>
             </span>
           </div>
 
@@ -1492,9 +1605,9 @@ export function ProductWorkspace() {
               type="button"
               aria-label="Export match analysis CSV"
               onClick={handleExportCsv}
-              className="flex items-center gap-1.5 rounded-md bg-[#22c55e] hover:bg-[#16a34a] text-black px-3.5 py-1.5 text-[10.5px] font-black uppercase tracking-wider transition-all cursor-pointer shadow-[0_0_15px_rgba(34,197,94,0.4)] shrink-0"
+              className="flex items-center gap-1 sm:gap-1.5 rounded-md bg-[#22c55e] hover:bg-[#16a34a] text-black px-2.5 sm:px-3.5 py-1 sm:py-1.5 text-[9.5px] sm:text-[10.5px] font-black uppercase tracking-wider transition-all cursor-pointer shadow-[0_0_15px_rgba(34,197,94,0.4)] shrink-0 touch-manipulation"
             >
-              <Download className="size-3.5 stroke-[2.5]" />
+              <Download className="size-3 sm:size-3.5 stroke-[2.5]" />
               <span>Export CSV</span>
             </button>
           </div>

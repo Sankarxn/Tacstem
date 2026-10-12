@@ -63,9 +63,9 @@ export function Hero() {
               size="lg"
               className="group h-12 w-full sm:w-auto justify-center gap-2 px-7 text-[15px] font-semibold shadow-[0_0_34px_-8px_rgba(201,247,60,0.75)] transition-shadow hover:shadow-[0_0_40px_-6px_rgba(201,247,60,0.85)] cursor-pointer"
             >
-              <Link href="/studio">
+              <Link href="https://tacstempro.netlify.app/">
                 <Play className="size-4 fill-primary-foreground" />
-                <span>Launch Studio Free — Start Analyzing</span>
+                <span>Launch Tacstem – Instant Access</span>
                 <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
             </Button>

@@ -165,9 +165,9 @@ export default function ComparisonPage() {
 
                 <div className="flex flex-col sm:flex-row sm:items-center gap-3 pt-2">
                   <Button asChild size="lg" className="h-12 gap-2 px-7 text-sm font-semibold shadow-[0_0_30px_-6px_rgba(201,247,60,0.7)] cursor-pointer">
-                    <Link href="/studio">
+                    <Link href="https://tacstempro.netlify.app/">
                       <Play className="size-4 fill-primary-foreground" />
-                      <span>Launch Studio Free — Verify Capabilities</span>
+                      <span>Launch Tacstem – Instant Access</span>
                       <ArrowRight className="size-4" />
                     </Link>
                   </Button>
@@ -441,9 +441,9 @@ export default function ComparisonPage() {
 
             <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-3 w-full sm:w-auto">
               <Button asChild size="lg" className="h-12 w-full sm:w-auto justify-center gap-2 px-8 text-sm font-semibold shadow-[0_0_34px_-8px_rgba(201,247,60,0.75)] cursor-pointer">
-                <Link href="/studio">
+                <Link href="https://tacstempro.netlify.app/">
                   <Play className="size-4 fill-primary-foreground" />
-                  <span>Launch Studio Free — Instant Access</span>
+                  <span>Launch Tacstem – Instant Access</span>
                   <ArrowRight className="size-4" />
                 </Link>
               </Button>

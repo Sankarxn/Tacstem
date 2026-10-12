@@ -226,9 +226,9 @@ export default function PricingPage() {
                   size="lg"
                   className="w-full sm:flex-1 h-12 justify-center gap-2 text-sm font-bold shadow-[0_0_30px_-6px_rgba(201,247,60,0.7)] cursor-pointer"
                 >
-                  <Link href="/studio">
+                  <Link href="https://tacstempro.netlify.app/">
                     <CreditCard className="size-4" />
-                    <span>Get Started for $10/mo</span>
+                    <span>Launch Tacstem – Instant Access</span>
                     <ArrowRight className="size-4" />
                   </Link>
                 </Button>
@@ -431,9 +431,9 @@ export default function PricingPage() {
 
             <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-3 w-full sm:w-auto">
               <Button asChild size="lg" className="h-12 w-full sm:w-auto justify-center gap-2 px-8 text-sm font-semibold shadow-[0_0_34px_-8px_rgba(201,247,60,0.75)] cursor-pointer">
-                <Link href="/studio">
+                <Link href="https://tacstempro.netlify.app/">
                   <CreditCard className="size-4" />
-                  <span>Start Analyzing for $10/mo</span>
+                  <span>Launch Tacstem – Instant Access</span>
                   <ArrowRight className="size-4" />
                 </Link>
               </Button>

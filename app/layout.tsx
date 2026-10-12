@@ -93,7 +93,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <head>
-        <JsonLd />
+        <JsonLd includeGlobal={true} />
       </head>
       <body suppressHydrationWarning className="bg-background text-foreground min-h-screen selection:bg-primary selection:text-primary-foreground overflow-x-hidden antialiased">
         {children}
