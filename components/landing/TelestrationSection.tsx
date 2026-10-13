@@ -389,19 +389,25 @@ export function TelestrationSection() {
 
         {/* Video Player Showcase */}
         <Reveal delay={0.12} className="mt-10">
-          <figure
+          <div
             ref={containerRef}
             className={cn(
-              "telestration-fullscreen-container group relative aspect-video overflow-hidden rounded-2xl border border-white/15 bg-black shadow-[0_50px_140px_-45px_rgba(0,0,0,0.95)] ring-1 ring-white/10 transition-all duration-300",
-              isFullscreen && "fullscreen-active !rounded-none !border-none !aspect-auto"
+              "telestration-fullscreen-container group relative transition-all duration-300",
+              isFullscreen && "fullscreen-active"
             )}
           >
-            <div className="telestration-fullscreen-inner relative size-full flex items-center justify-center overflow-hidden">
-              <figcaption className="sr-only">
-                Interactive demonstration of Tacstem 9 broadcast telestration tools:
-                arrows, 3D aerial passes, player rings, spotlights, magnification lens,
-                player ID tags, compactness polygons, vision scanning cones, and radar.
-              </figcaption>
+            <figure
+              className={cn(
+                "telestration-fullscreen-figure relative aspect-video overflow-hidden rounded-2xl border border-white/15 bg-black shadow-[0_50px_140px_-45px_rgba(0,0,0,0.95)] ring-1 ring-white/10 transition-all duration-300",
+                isFullscreen && "!rounded-none !border-none !aspect-auto"
+              )}
+            >
+              <div className="telestration-fullscreen-inner relative size-full flex items-center justify-center overflow-hidden">
+                <figcaption className="sr-only">
+                  Interactive demonstration of Tacstem 9 broadcast telestration tools:
+                  arrows, 3D aerial passes, player rings, spotlights, magnification lens,
+                  player ID tags, compactness polygons, vision scanning cones, and radar.
+                </figcaption>
 
               {/* HTML5 Video element */}
               <video
@@ -424,8 +430,8 @@ export function TelestrationSection() {
               <div className="pointer-events-none absolute inset-x-0 top-0 h-24 sm:h-28 bg-gradient-to-b from-black/85 via-black/40 to-transparent" />
               <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 sm:h-36 bg-gradient-to-t from-black/90 via-black/60 to-transparent" />
 
-            {/* Top HUD: Left Info + Right Tool Switcher Rail */}
-            <div className="absolute inset-x-0 top-0 flex flex-col xs:flex-row items-start xs:items-center justify-between p-2.5 sm:p-5 gap-2 pointer-events-none">
+            {/* Top HUD: Left Info + Right Tool Switcher Rail (Desktop / Fullscreen) */}
+            <div className="absolute inset-x-0 top-0 flex flex-row items-center justify-between p-2.5 sm:p-5 gap-2 pointer-events-none">
               {/* Match and active tool indicator */}
               <div className="flex flex-wrap items-center gap-1.5 pointer-events-auto">
                 <div className="flex items-center gap-1.5 rounded-lg border border-white/15 bg-black/80 px-2 py-1 sm:px-2.5 sm:py-1.5 font-mono text-[9.5px] sm:text-[11px] uppercase tracking-[0.12em] text-foreground backdrop-blur-md shadow-lg">
@@ -448,8 +454,10 @@ export function TelestrationSection() {
                 </div>
               </div>
 
-              {/* Floating Tool Rail (Quick Icon Selector) */}
-              <div className="flex items-center gap-1 overflow-x-auto rounded-xl border border-white/15 bg-black/85 p-1 sm:p-1.5 shadow-2xl backdrop-blur-md max-w-full xs:max-w-[320px] sm:max-w-none no-scrollbar pointer-events-auto">
+              {/* Floating Tool Rail (Quick Icon Selector inside video on Desktop / Tablet only) */}
+              <div
+                className="hidden sm:flex items-center gap-1 overflow-x-auto rounded-xl border border-white/15 bg-black/85 p-1 sm:p-1.5 shadow-2xl backdrop-blur-md no-scrollbar pointer-events-auto"
+              >
                 {TELESTRATION_TOOLS.map((t, idx) => {
                   const isActive = activeToolIndex === idx;
                   const ToolIcon = t.Icon;
@@ -643,7 +651,109 @@ export function TelestrationSection() {
             </div>
             </div>
           </figure>
-        </Reveal>
+
+          {/* Mobile Toolbox & Quick Selector (Displayed directly below video on mobile screens without overlapping, in normal view and in fullscreen) */}
+          <div
+            className={cn(
+              "telestration-fullscreen-toolbox mt-3 block sm:hidden w-full",
+              isFullscreen && "fullscreen-toolbox-active mt-2 px-2"
+            )}
+          >
+            <div className="rounded-xl border border-white/10 bg-[#0c0e0c]/95 p-2.5 sm:p-3 shadow-lg backdrop-blur-md">
+              {/* Toolbox Header */}
+              <div className="flex items-center justify-between pb-2 border-b border-white/10">
+                <div className="flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-wider text-primary font-semibold">
+                  <Sparkles className="size-3.5 text-primary" />
+                  <span>Telestration Toolbox</span>
+                </div>
+                <div className="flex items-center gap-1.5 font-mono text-[10px] text-muted-foreground">
+                  <span className="text-foreground font-semibold">
+                    {activeToolIndex + 1}/{TELESTRATION_TOOLS.length}
+                  </span>
+                  <span>·</span>
+                  <button
+                    type="button"
+                    onClick={() => setLoopCurrentTool((v) => !v)}
+                    className={cn(
+                      "px-1.5 py-0.5 rounded text-[9px] uppercase tracking-wider transition-colors cursor-pointer border",
+                      loopCurrentTool
+                        ? "bg-primary/20 border-primary/40 text-primary font-bold"
+                        : "border-white/10 text-muted-foreground bg-white/5"
+                    )}
+                  >
+                    {loopCurrentTool ? "Loop On" : "Loop Off"}
+                  </button>
+                </div>
+              </div>
+
+              {/* Horizontal Scrollable Tool Selector Rail */}
+              <div className="mt-2.5 flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar touch-pan-x">
+                {TELESTRATION_TOOLS.map((t, idx) => {
+                  const isActive = activeToolIndex === idx;
+                  const ToolIcon = t.Icon;
+                  return (
+                    <button
+                      key={`mob-tool-${t.id}`}
+                      type="button"
+                      aria-label={t.label}
+                      aria-pressed={isActive}
+                      onClick={() => selectTool(idx)}
+                      className={cn(
+                        "flex shrink-0 items-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-left transition-all cursor-pointer touch-manipulation",
+                        isActive
+                          ? "border-primary bg-primary/15 text-primary font-semibold shadow-[0_0_12px_rgba(201,247,60,0.3)] ring-1 ring-primary/40"
+                          : "border-white/10 bg-white/[0.03] text-white/70 hover:bg-white/[0.08] hover:text-white"
+                      )}
+                    >
+                      <ToolIcon className={cn("size-3.5", isActive ? "text-primary" : "text-muted-foreground")} />
+                      <span className="font-mono text-[11px] whitespace-nowrap">
+                        {t.shortLabel || t.label}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Active Tool Summary Card */}
+              <div className="mt-2.5 flex items-center justify-between rounded-lg border border-white/5 bg-black/60 px-3 py-2">
+                <div className="flex items-center gap-2 min-w-0 pr-2">
+                  <span className="size-1.5 rounded-full bg-primary shrink-0 animate-tac-blink" />
+                  <div className="min-w-0">
+                    <p className="font-mono text-[11px] font-semibold text-foreground truncate">
+                      {activeTool.label}
+                      <span className="ml-1.5 text-[9.5px] font-normal text-primary">
+                        ({activeTool.category})
+                      </span>
+                    </p>
+                    <p className="text-[10px] text-muted-foreground truncate">
+                      {activeTool.description}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-1 shrink-0">
+                  <button
+                    type="button"
+                    onClick={handlePrevTool}
+                    aria-label="Previous tool"
+                    className="grid size-7 place-items-center rounded-md border border-white/10 bg-white/[0.04] text-white/80 active:bg-white/15"
+                  >
+                    <ChevronLeft className="size-3.5" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleNextTool}
+                    aria-label="Next tool"
+                    className="grid size-7 place-items-center rounded-md border border-primary/30 bg-primary/10 text-primary active:bg-primary/20"
+                  >
+                    <ChevronRight className="size-3.5" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Reveal>
 
         {/* 9-Tool Interactive Selector Cards (Desktop & Tablet only) */}
         <Reveal delay={0.16} className="mt-8 hidden sm:block">
