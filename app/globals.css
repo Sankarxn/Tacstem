@@ -270,8 +270,8 @@
   .telestration-fullscreen-container:fullscreen .telestration-fullscreen-figure,
   .telestration-fullscreen-container:-webkit-full-screen .telestration-fullscreen-figure {
     width: 100% !important;
-    max-height: calc(100vh - 170px) !important;
-    max-width: calc((100vh - 170px) * 1.7778) !important;
+    max-height: calc(100vh - 210px) !important;
+    max-width: calc((100vh - 210px) * 1.7778) !important;
     aspect-ratio: 16 / 9 !important;
     margin: 0 auto !important;
     flex-shrink: 0 !important;
@@ -356,8 +356,8 @@
 
   .telestration-fullscreen-container.fullscreen-active .telestration-fullscreen-figure {
     width: 100% !important;
-    max-height: calc(100vh - 170px) !important;
-    max-width: calc((100vh - 170px) * 1.7778) !important;
+    max-height: calc(100vh - 210px) !important;
+    max-width: calc((100vh - 210px) * 1.7778) !important;
     aspect-ratio: 16 / 9 !important;
     margin: 0 auto !important;
     flex-shrink: 0 !important;

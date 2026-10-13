@@ -396,6 +396,27 @@ export function TelestrationSection() {
               isFullscreen && "fullscreen-active"
             )}
           >
+            {/* Mobile Video Status Header (Outside video canvas) */}
+            <div className="mb-2 flex sm:hidden items-center justify-between px-1">
+              <div className="flex items-center gap-1.5 rounded-lg border border-white/15 bg-black/80 px-2 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-foreground backdrop-blur-md">
+                <span className="size-1.5 animate-tac-blink rounded-full bg-primary shadow-[0_0_8px_rgba(201,247,60,0.9)]" />
+                <span className="font-semibold text-white">Tacstem Engine</span>
+                <span className="text-white/30">|</span>
+                <span className="text-muted-foreground">Broadcast</span>
+              </div>
+
+              <div className="flex items-center gap-1.5 rounded-lg border border-primary/40 bg-primary/15 px-2 py-1 font-mono text-[10px] font-semibold text-primary backdrop-blur-md">
+                <activeTool.Icon className="size-3 shrink-0" />
+                <span className="uppercase tracking-wider">{activeTool.shortLabel || activeTool.label}</span>
+                {loopCurrentTool && (
+                  <span className="flex items-center gap-1 rounded bg-primary/25 px-1 py-0.5 text-[8px] uppercase tracking-widest text-primary">
+                    <span className="size-1 animate-tac-blink rounded-full bg-primary" />
+                    Loop
+                  </span>
+                )}
+              </div>
+            </div>
+
             <figure
               className={cn(
                 "telestration-fullscreen-figure relative aspect-video overflow-hidden rounded-2xl border border-white/15 bg-black shadow-[0_50px_140px_-45px_rgba(0,0,0,0.95)] ring-1 ring-white/10 transition-all duration-300",
@@ -426,12 +447,12 @@ export function TelestrationSection() {
                 className="h-full w-full cursor-pointer object-cover"
               />
 
-              {/* Subtle Gradient Overlays for readable HUD elements */}
-              <div className="pointer-events-none absolute inset-x-0 top-0 h-24 sm:h-28 bg-gradient-to-b from-black/85 via-black/40 to-transparent" />
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 sm:h-36 bg-gradient-to-t from-black/90 via-black/60 to-transparent" />
+              {/* Subtle Gradient Overlays for readable HUD elements on Desktop / Tablet only */}
+              <div className="pointer-events-none absolute inset-x-0 top-0 h-24 sm:h-28 bg-gradient-to-b from-black/85 via-black/40 to-transparent hidden sm:block" />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 sm:h-36 bg-gradient-to-t from-black/90 via-black/60 to-transparent hidden sm:block" />
 
-            {/* Top HUD: Left Info + Right Tool Switcher Rail (Desktop / Fullscreen) */}
-            <div className="absolute inset-x-0 top-0 flex flex-row items-center justify-between p-2.5 sm:p-5 gap-2 pointer-events-none">
+            {/* Top HUD: Left Info + Right Tool Switcher Rail (Desktop & Tablet only) */}
+            <div className="absolute inset-x-0 top-0 hidden sm:flex flex-row items-center justify-between p-2.5 sm:p-5 gap-2 pointer-events-none">
               {/* Match and active tool indicator */}
               <div className="flex flex-wrap items-center gap-1.5 pointer-events-auto">
                 <div className="flex items-center gap-1.5 rounded-lg border border-white/15 bg-black/80 px-2 py-1 sm:px-2.5 sm:py-1.5 font-mono text-[9.5px] sm:text-[11px] uppercase tracking-[0.12em] text-foreground backdrop-blur-md shadow-lg">
@@ -486,11 +507,11 @@ export function TelestrationSection() {
               </div>
             </div>
 
-            {/* Middle Quick Click overlay notice if paused */}
+            {/* Middle Quick Click overlay notice if paused (Desktop & Tablet only) */}
             {!isPlaying && (
               <div
                 onClick={togglePlay}
-                className="absolute inset-0 flex items-center justify-center bg-black/30 backdrop-blur-[2px] cursor-pointer"
+                className="absolute inset-0 hidden sm:flex items-center justify-center bg-black/30 backdrop-blur-[2px] cursor-pointer"
               >
                 <div className="flex items-center gap-2 sm:gap-3 rounded-full border border-primary/50 bg-black/85 px-4 sm:px-5 py-2 sm:py-2.5 font-mono text-[11px] sm:text-xs uppercase tracking-widest text-primary shadow-2xl backdrop-blur-md transition-transform hover:scale-105">
                   <Play className="size-3.5 sm:size-4 fill-primary text-primary" />
@@ -499,8 +520,8 @@ export function TelestrationSection() {
               </div>
             )}
 
-            {/* Bottom Overlay: Tactical Callout Banner */}
-            <div className="absolute bottom-12 sm:bottom-16 left-2 sm:left-5 right-2 sm:right-5 flex flex-col xs:flex-row xs:items-center justify-between gap-1.5 pointer-events-none">
+            {/* Bottom Overlay: Tactical Callout Banner (Desktop & Tablet only) */}
+            <div className="absolute bottom-12 sm:bottom-16 left-2 sm:left-5 right-2 sm:right-5 hidden sm:flex flex-col xs:flex-row xs:items-center justify-between gap-1.5 pointer-events-none">
               <div className="flex items-center gap-2 rounded-lg border border-white/10 bg-black/80 px-2.5 py-1 sm:px-3 sm:py-1.5 backdrop-blur-md max-w-xl">
                 <span className="size-1.5 sm:size-2 rounded-full bg-primary shrink-0" />
                 <p className="font-mono text-[10px] sm:text-xs text-white/90 truncate">
@@ -523,8 +544,8 @@ export function TelestrationSection() {
               </div>
             </div>
 
-            {/* Bottom Interactive Transport Controls */}
-            <div className="absolute inset-x-0 bottom-0 flex h-11 sm:h-14 items-center gap-1.5 sm:gap-3 border-t border-white/10 bg-black/85 px-2 sm:px-5 backdrop-blur-md">
+            {/* Bottom Interactive Transport Controls (Desktop & Tablet only) */}
+            <div className="absolute inset-x-0 bottom-0 hidden sm:flex h-11 sm:h-14 items-center gap-1.5 sm:gap-3 border-t border-white/10 bg-black/85 px-2 sm:px-5 backdrop-blur-md">
               {/* Prev tool */}
               <button
                 type="button"
@@ -652,13 +673,120 @@ export function TelestrationSection() {
             </div>
           </figure>
 
-          {/* Mobile Toolbox & Quick Selector (Displayed directly below video on mobile screens without overlapping, in normal view and in fullscreen) */}
+          {/* Mobile Transport Bar & Toolbox (Displayed directly below video on mobile screens without overlapping canvas, in normal view and in fullscreen) */}
           <div
             className={cn(
               "telestration-fullscreen-toolbox mt-3 block sm:hidden w-full",
               isFullscreen && "fullscreen-toolbox-active mt-2 px-2"
             )}
           >
+            {/* Dedicated Mobile Playback & Transport Controls Bar (Outside video canvas) */}
+            <div className="mb-2 flex items-center gap-1.5 rounded-xl border border-white/10 bg-[#0c0e0c]/95 px-2.5 py-1.5 shadow-lg backdrop-blur-md">
+              {/* Play / Pause button */}
+              <button
+                type="button"
+                onClick={togglePlay}
+                aria-label={isPlaying ? "Pause clip" : "Play clip"}
+                className="grid size-7 shrink-0 place-items-center rounded-full bg-primary text-black transition-transform active:scale-95 cursor-pointer shadow-[0_0_10px_rgba(201,247,60,0.5)] touch-manipulation"
+              >
+                {isPlaying ? (
+                  <Pause className="size-3 fill-black" />
+                ) : (
+                  <Play className="size-3 fill-black translate-x-[1px]" />
+                )}
+              </button>
+
+              {/* Prev tool */}
+              <button
+                type="button"
+                onClick={handlePrevTool}
+                title="Previous Tool"
+                aria-label="Previous tool"
+                className="grid size-7 shrink-0 place-items-center rounded-lg border border-white/10 bg-white/[0.04] text-white/80 active:bg-white/15 cursor-pointer touch-manipulation"
+              >
+                <ChevronLeft className="size-3.5" />
+              </button>
+
+              {/* Real Timeline scrubber with calibrated tool blocks */}
+              <div className="relative flex h-6 min-w-0 flex-1 items-center">
+                <div className="relative h-2 w-full overflow-hidden rounded-full bg-white/15">
+                  {TELESTRATION_TOOLS.map((t, idx) => {
+                    const leftPercent = (t.startTime / TOTAL_DURATION) * 100;
+                    const widthPercent =
+                      ((t.endTime - t.startTime) / TOTAL_DURATION) * 100;
+                    const isSelected = activeToolIndex === idx;
+                    return (
+                      <button
+                        key={`mob-scrub-${t.id}`}
+                        type="button"
+                        onClick={() => selectTool(idx)}
+                        title={t.label}
+                        style={{
+                          left: `${leftPercent}%`,
+                          width: `${widthPercent}%`,
+                        }}
+                        className={cn(
+                          "absolute top-0 h-full rounded-sm transition-all duration-150 cursor-pointer touch-manipulation",
+                          isSelected
+                            ? "bg-primary shadow-[0_0_10px_rgba(201,247,60,0.9)] z-10 brightness-110"
+                            : "bg-white/30 hover:bg-white/60"
+                        )}
+                      />
+                    );
+                  })}
+                </div>
+
+                {/* Scrubber needle */}
+                <div
+                  className="pointer-events-none absolute top-1/2 size-3 -translate-y-1/2 -translate-x-1/2 rounded-full border-2 border-black bg-primary shadow-[0_0_10px_rgba(201,247,60,1)] transition-transform"
+                  style={{
+                    left: `${Math.min(100, (currentTime / TOTAL_DURATION) * 100)}%`,
+                  }}
+                />
+              </div>
+
+              {/* Next tool */}
+              <button
+                type="button"
+                onClick={handleNextTool}
+                title="Next Tool"
+                aria-label="Next tool"
+                className="grid size-7 shrink-0 place-items-center rounded-lg border border-white/10 bg-white/[0.04] text-white/80 active:bg-white/15 cursor-pointer touch-manipulation"
+              >
+                <ChevronRight className="size-3.5" />
+              </button>
+
+              {/* Mute / Unmute */}
+              <button
+                type="button"
+                onClick={toggleMute}
+                title={isMuted ? "Unmute Audio" : "Mute Audio"}
+                aria-label={isMuted ? "Unmute audio" : "Mute audio"}
+                className="grid size-7 shrink-0 place-items-center rounded-lg border border-white/10 bg-white/[0.04] text-white/80 active:bg-white/15 cursor-pointer touch-manipulation"
+              >
+                {isMuted ? (
+                  <VolumeX className="size-3.5" />
+                ) : (
+                  <Volume2 className="size-3.5 text-primary" />
+                )}
+              </button>
+
+              {/* Fullscreen */}
+              <button
+                type="button"
+                onClick={toggleFullscreen}
+                title={isFullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
+                aria-label={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
+                className="grid size-7 shrink-0 place-items-center rounded-lg border border-white/10 bg-white/[0.04] text-white/80 active:bg-white/15 cursor-pointer touch-manipulation"
+              >
+                {isFullscreen ? (
+                  <Minimize2 className="size-3.5" />
+                ) : (
+                  <Maximize2 className="size-3.5" />
+                )}
+              </button>
+            </div>
+
             <div className="rounded-xl border border-white/10 bg-[#0c0e0c]/95 p-2.5 sm:p-3 shadow-lg backdrop-blur-md">
               {/* Toolbox Header */}
               <div className="flex items-center justify-between pb-2 border-b border-white/10">
